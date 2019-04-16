@@ -1,3 +1,21 @@
+"""
+Name: Nicholas Visalli 
+Assignment number: 2
+Purpose: Solve a maze using stacks
+"""
+
+"""Determine if there is a path to the left of current position in maze
+:param maze: 2D array that represents maze structure
+:type maze: 2D array
+:param row: number of current row in maze
+:type row: number
+:param column: number of current column in maze
+:type column: number
+:param usedPaths: array of coordinates that have already been visited
+:type usedPaths: array
+:returns: None 
+:rtype: None
+"""
 def checkLeft(maze, row, column, usedPaths):
     if column == 0:
         return '1'
@@ -5,7 +23,19 @@ def checkLeft(maze, row, column, usedPaths):
         return '1'
     else:
         return maze[row][0][column-1]
-    
+
+"""Determine if there is a path to the right of current position in maze
+:param maze: 2D array that represents maze structure
+:type maze: 2D array
+:param row: number of current row in maze
+:type row: number
+:param column: number of current column in maze
+:type column: number
+:param usedPaths: array of coordinates that have already been visited
+:type usedPaths: array
+:returns: None 
+:rtype: None
+"""
 def checkRight(maze, row, column, usedPaths):
     if column == 19: 
         return '1'
@@ -14,6 +44,18 @@ def checkRight(maze, row, column, usedPaths):
     else:
         return maze[row][0][column+1]
 
+"""Determine if there is a path above current position in maze
+:param maze: 2D array that represents maze structure
+:type maze: 2D array
+:param row: number of current row in maze
+:type row: number
+:param column: number of current column in maze
+:type column: number
+:param usedPaths: array of coordinates that have already been visited
+:type usedPaths: array
+:returns: None 
+:rtype: None
+"""
 def checkUp(maze, row, column, usedPaths):
     if row == 0:
         return '1'
@@ -22,6 +64,18 @@ def checkUp(maze, row, column, usedPaths):
     else:
         return maze[row-1][0][column]
 
+"""Determine if there is a path below current position in maze
+:param maze: 2D array that represents maze structure
+:type maze: 2D array
+:param row: number of current row in maze
+:type row: number
+:param column: number of current column in maze
+:type column: number
+:param usedPaths: array of coordinates that have already been visited
+:type usedPaths: array
+:returns: None 
+:rtype: None
+"""
 def checkDown(maze, row, column, usedPaths):
     if row == 19:
         return '1'
@@ -30,6 +84,18 @@ def checkDown(maze, row, column, usedPaths):
     else:
         return maze[row+1][0][column]
 
+"""Prints out resulting maze (finished or not)
+:param maze: 2D array that represents maze structure
+:type maze: 2D array
+:param exitRoute: array that contains coordinates of escape route
+:type exitRoute: array
+:param startingPoint: a pair of coordinates that represent the starting point in the maze
+:type stringPoint: string
+:param completed: boolean that determines if user was able to complete the maze or not
+:type completed: boolean
+:returns: None
+:rtype: None
+"""
 def displayCompletedMaze(maze, exitRoute, startingPoint, completed):
     print('     0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19')
     for x in range(len(maze)): 
@@ -53,6 +119,11 @@ def displayCompletedMaze(maze, exitRoute, startingPoint, completed):
     else:
         print("Help, I am trapped")
 
+
+"""Initializes the maze structure and required metadata
+:returns: None 
+:rtype: None
+"""
 def main():
     exitRoute = []
     usedPaths = []
@@ -64,6 +135,18 @@ def main():
     usedPaths.append(startingPoint)
     solveMaze(maze, exitRoute, usedPaths, startingPoint)
 
+"""Orchestrates the process of solving the maze
+:param maze: 2D array that represents maze structure
+:type maze: 2D array
+:param exitRoute: array that contains coordinates of escape route
+:type exitRoute: array
+:param usedPaths: array of coordinates that have already been visited
+:type usedPaths: array
+:param startingPoint: a pair of coordinates that represent the starting point in the maze
+:type stringPoint: string
+:returns: None
+:rtype: None
+"""
 def solveMaze(maze, exitRoute, usedPaths, startingPoint):
     row = int(exitRoute[-1].split(' ')[0])
     column = int(exitRoute[-1].split(' ')[1])
