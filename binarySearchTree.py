@@ -6,6 +6,9 @@ class Node:
         self.right = None
         self.val = key 
 
+    def depth(self):
+        return max(self.left.depth() if self.left else 0, self.right.depth() if self.right else 0) + 1
+
 def insert(root,node): 
     if root is None: 
         root = node 
@@ -28,8 +31,12 @@ def inorder(root):
         inorder(root.right) 
 
 
-r = Node(randint(1, 10000)) 
+r = Node(randint(0, 50000)) 
+depth = 0
 for i in range(4999):
-    insert(r, Node(randint(1, 10000)))
+    insert(r, Node(randint(0, 50000)))
+    depth = depth + r.depth();
+
 
 inorder(r)
+print('avg depth: ', depth/5000)
